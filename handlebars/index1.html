@@ -1,0 +1,42 @@
+<html>
+	<head>
+		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0-alpha1/jquery.min.js"></script>
+		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/3.0.3/handlebars.min.js"></script>
+		<script type="text/javascript" src="precompile/default.js"></script>
+		<script type="text/javascript">
+			$(document).ready(function(){
+				var template = Handlebars.templates['default'];
+			
+				Handlebars.registerHelper('initial', function(firstName){
+					return firstName.substring(0, 1);
+				});					
+				
+				var result = template({
+					'title': 'this is a handlebars template, fool!',
+					'people': [
+						{
+							'firstName': 'gary',
+							'lastName': 'yochum',
+							'active': false
+						},
+						{
+							'firstName': 'sara',
+							'lastName': 'yochum',
+							'active': true
+						}
+					],
+					'vehicle': {
+						'make': 'toyota',
+						'model': 'corolla',
+						'year': '2005'
+					}
+				});
+				
+				$('#container').html(result);
+			});
+		</script>
+	</head>
+	<body>		
+		<div id="container"></div>
+	</body>
+</html>

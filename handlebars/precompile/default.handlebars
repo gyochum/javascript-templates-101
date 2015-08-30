@@ -1,0 +1,19 @@
+<h1>{{title}}</h1>
+<ul>
+{{#each people}}
+	<li>
+		{{initial firstName}} {{lastName}} - 
+		{{#if active}}
+			<i>active</i>
+		{{else}}
+			<i>inactive</i>
+		{{/if}}
+		{{#unless active}}
+			( what a loser!)
+		{{/unless}}
+	</li>
+{{/each}}
+</ul>
+{{#with vehicle}}
+<p>Vehicle: {{make}} {{model}} {{year}}</p>
+{{/with}}

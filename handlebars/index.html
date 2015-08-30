@@ -1,0 +1,63 @@
+<html>
+	<head>
+		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0-alpha1/jquery.min.js"></script>
+		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/3.0.3/handlebars.min.js"></script>
+		<script type="text/javascript">
+			$(document).ready(function(){
+				Handlebars.registerHelper('initial', function(firstName){
+					return firstName.substring(0, 1);
+				});
+			
+				var template = $('#people-template').html();
+				var renderer = Handlebars.compile(template);
+				
+				var result = renderer({
+					'title': 'this is a handlebars template, fool!',
+					'people': [
+						{
+							'firstName': 'gary',
+							'lastName': 'yochum',
+							'active': false
+						},
+						{
+							'firstName': 'sara',
+							'lastName': 'yochum',
+							'active': true
+						}
+					],
+					'vehicle': {
+						'make': 'toyota',
+						'model': 'corolla',
+						'year': '2005'
+					}
+				});
+				
+				$('#container').html(result);
+			});
+		</script>
+	</head>
+	<body>
+		<script type="text/x-handlebars-template" id="people-template">
+			<h1>{{title}}</h1>
+			<ul>
+			{{#each people}}
+				<li>
+					{{initial firstName}} {{lastName}} - 
+					{{#if active}}
+						<i>active</i>
+					{{else}}
+						<i>inactive</i>
+					{{/if}}
+					{{#unless active}}
+						( what a loser!)
+					{{/unless}}
+				</li>
+			{{/each}}
+			</ul>
+			{{#with vehicle}}
+			<p>Vehicle: {{make}} {{model}} {{year}}</p>
+			{{/with}}
+		</script>		
+		<div id="container"></div>
+	</body>
+</html>

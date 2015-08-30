@@ -1,0 +1,18 @@
+<html>
+	<body>
+		<h1>{{header}}</h1>
+		<ul>
+		{{#people}}
+			<li>
+				{{#decorate}}{{fullName}}{{/decorate}} is 
+				{{#active}}
+					very active
+				{{/active}}
+				{{^active}}
+					extremely inactive
+				{{/active}}
+			</li>
+		{{/people}}
+		</ul>
+	</body>
+</html>
