@@ -1,0 +1,62 @@
+<!doctype html>
+<html>
+	<head>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+		<script src="scripts/dust-full.min.js"></script>
+		<script type="text/javascript">
+			function renderTemplate1(){
+				var content = $("#dustTemplate1").html();
+				var template = dust.compile(content, "NameTemplate");
+				var data = {
+					"name": "Pete Lututz"
+				};
+				
+				dust.loadSource(template);
+				dust.render("NameTemplate", data, function(error, result){
+					$("#container").html(result);
+				});
+				
+			}
+			
+			function renderTemplate2(){
+				$.getJSON("./data/employees.json", function(data){
+					var content = $("#dustTemplate2").html();
+					var template = dust.compile(content, "EmployeeTemplate");
+					
+					dust.loadSource(template);
+					
+					dust.render("EmployeeTemplate", data, function(error, result){
+						$("#employeeContainer").html(result);
+					});
+				});
+			}
+			
+			$(document).ready(function(){
+				renderTemplate1();
+				renderTemplate2();
+			});
+		</script>
+	</head>
+	<body>
+		<div id="container"></div>
+		<div id="employeeContainer"></div>
+		
+		<script type="text/x-template" id="dustTemplate1">
+			<div class="container">
+				Hey {name}.
+			</div>
+		</script>
+						
+		<script type="text/x-template" id="dustTemplate2">
+			<div>{company} Employees:</div>
+			{#employees}
+				<div class="itemTemplateWrapper">
+					<div>{name}</div>
+					<div>{title}</div>
+					<div>{email}</div>
+					<div>{phone}</div>
+				</div>
+			{/employees}
+		</script>
+	</body>
+</html>
