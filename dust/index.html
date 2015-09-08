@@ -3,6 +3,7 @@
 	<head>
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
 		<script src="scripts/dust-full.min.js"></script>
+		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/dustjs-helpers/1.7.3/dust-helpers.min.js"></script>
 		<script type="text/javascript">
 			function renderTemplate1(){
 				var content = $("#dustTemplate1").html();
@@ -49,13 +50,33 @@
 						
 		<script type="text/x-template" id="dustTemplate2">
 			<div>{company} Employees:</div>
-			{#employees}
+			{#employees prefix="Name"}
 				<div class="itemTemplateWrapper">
-					<div>{name}</div>
+					<div>{@math key="{$idx}" method="add" operand="1" /} of {$len}: {name}</div>
+					<div>{prefix}: {name}</div>
 					<div>{title}</div>
 					<div>{email}</div>
 					<div>{phone}</div>
+					{@select key="{fulltime}"}
+						{@eq value="true"}
+							<div>full-time employee</div>
+						{:else}
+							<div>part-time employee</div>
+						{/eq}
+					{/select}
+					<div>
+					{#skills}
+						<span>{.}{@sep},{/sep}</span>
+					{/skills}
+					</div>
+					<h3>DEPARTMENT</h3>
+					{#department}
+					<div>{name}</div>
+					<div>{cost_center}</div>
+					{/department}
 				</div>
+			{:else}
+				<div>There are no employees.</div>
 			{/employees}
 		</script>
 	</body>

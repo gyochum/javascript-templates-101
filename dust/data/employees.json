@@ -4,19 +4,37 @@
 		"name": "Gary Yochum",
 		"title": "Baller",
 		"email": "garyballer@outlook.com",
-		"phone": "555.888.1212"
+		"phone": "555.888.1212",
+		"fulltime": "true",
+		"skills": ["yelling", "crying"],
+		"department": {
+			"name": "Department A",
+			"cost_center": "A"
+		}
 		},
 		{
 		"name": "Donald Grump",
 		"title": "Loser",
 		"email": "grump@loser.com",
-		"phone": "555.888.3333"
+		"phone": "555.888.3333",
+		"fulltime": "false",
+		"skills": ["yelling", "insulting", "ignorance"],
+		"department": {
+			"name": "Department B",
+			"cost_center": "B"
+		}
 		},
 		{
 		"name": "Pete Lututz",
 		"title": "CEO",
 		"email": "ceo@company.com",
-		"phone": "555.888.1212"
+		"phone": "555.888.1212",
+		"fulltime": "true",
+		"skills": ["yelling", "work ethic", "book smarts"],
+		"department": {
+			"name": "Department C",
+			"cost_center": "C"
+		}
 		}
 	]
 }
